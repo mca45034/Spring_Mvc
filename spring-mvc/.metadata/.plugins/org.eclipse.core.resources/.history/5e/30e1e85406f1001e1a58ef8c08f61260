@@ -1,0 +1,17 @@
+package com.rays.ctl;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+public class FrontCtl extends HandlerInterceptorAdapter{
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		System.out.println("inner the front controller...!!!!!");
+		
+		return ;
+	}
+
+}

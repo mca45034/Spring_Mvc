@@ -1,0 +1,34 @@
+package com.rays.dao;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.rays.dto.UserDTO;
+
+@Service
+public class UserDAOHibImpl {
+	@Autowired
+	public SessionFactory sessionFactory;
+	
+	public long add(UserDTO dto) {
+		long pk=(long) sessionFactory.getCurrentSession().save(dto);
+		return pk;
+				
+	}
+	public void update(UserDTO dto) {
+		sessionFactory.getCurrentSession().update(dto);
+	}
+	public UserDTO findByPk(long pk) {
+		UserDTO dto=null;
+		dto=sessionFactory.getCurrentSession().get(UserDTO.class, pk);
+		return dto;
+		
+	}
+	public UserDTO delete(long id) {
+		UserDTO dto=findByPk(id);
+		sessionFactory.getCurrentSession().delete(dto);
+		return dto;
+	}
+
+}
